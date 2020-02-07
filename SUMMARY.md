@@ -1,4 +1,4 @@
 # Table of contents
 
-* [webpack教程](README.md)
+* [初识webpack](README.md)
 
