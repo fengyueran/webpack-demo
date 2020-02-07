@@ -1,4 +1,4 @@
-# 初识webpack
+# 1. 初识webpack
 
 为什么需要构建工具？试想一下，假如没有构建工具，我们平常用到的打包、转换、压缩等一些列处理都难以实现，所以我们需要构建工具。webpack 就是一个功能强大的构建工具，通过 webpack 的配置文件，我们更能方便地定制构建流程。webpack 默认配置文件为 webpack.config.js，也可以通过 webpack --config 指定配置文件，当没有指定配置文件时会到根目录查找 webpack.config.js 文件。
 
