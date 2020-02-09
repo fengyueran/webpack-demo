@@ -8,14 +8,26 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "build"),
-    publicPath: "/abc/",
+    publicPath: "/",
     filename: "[name].[contenthash:8].js"
   },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
       template: "./public/index.html",
-      filename: "index.html"
+      filename: "index.html",
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      }
     })
   ]
 };
