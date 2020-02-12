@@ -18,6 +18,25 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        //To be safe, you can use enforce: 'pre' section to check source files, not modified by other loaders (like babel-loader):
+        enforce: "pre",
+        use: [
+          {
+            loader: "eslint-loader",
+            options: {
+              cache: true,
+              fix: true, //自动修复
+              //当指定formatter时，eslintPath需要指定
+              eslintPath: require.resolve("eslint"),
+              //使输出信息更加友好
+              formatter: require.resolve("react-dev-utils/eslintFormatter"),
+              resolvePluginsRelativeTo: __dirname
+            }
+          }
+        ]
+      },
+      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"]
       }

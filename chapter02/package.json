@@ -2,13 +2,22 @@
   "name": "chapter01-acquaintance-webpack",
   "version": "1.0.0",
   "scripts": {
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src ./sdk --fix"
   },
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "react-dev-utils": "^10.1.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
