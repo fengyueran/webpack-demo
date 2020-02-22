@@ -8,5 +8,4 @@
   * [2.3 处理css](2.webpack-basic-usage/2.3-handle-css.md)
   * [2.4 配置eslint](2.webpack-basic-usage/2.4-config-eslint.md)
   * [2.5 支持ES6语法](2.webpack-basic-usage/2.5-support-es6.md)
-* [1](1.md)
 
