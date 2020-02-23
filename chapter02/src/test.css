@@ -1,3 +1,9 @@
+@font-face {
+  src: url("./xhm.ttf");
+  font-family: "XHM_TTF";
+}
+
 div {
   color: red;
+  font-family: "XHM_TTF";
 }

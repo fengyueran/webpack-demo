@@ -6,7 +6,7 @@ const isEnvDevelopment = process.env.NODE_ENV === "development";
 const isEnvProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
-  mode: "production",
+  mode: "none",
   entry: {
     index: "./src/index.js"
   },
@@ -39,6 +39,28 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          { loader: "url-loader", options: { limit: 1 } } // 小于10240字节转换为base64
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name]_[hash:8].[ext]",
+              outputPath: "assets" //默认为根目录
+            }
+          }
+        ]
+      },
+      {
+        test: /\.webapp$/,
+        use: ["raw-loader"]
       }
     ]
   },
