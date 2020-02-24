@@ -8,6 +8,10 @@
     "jest": true,
     "node": true
   },
+  "rules": {
+    "no-unused-vars": "off",
+    "react/jsx-filename-extension": "off"
+  },
   "settings": {
     "import/resolver": {
       "node": {

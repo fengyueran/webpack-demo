@@ -15,6 +15,10 @@ module.exports = {
     publicPath: "/",
     filename: "[name].[contenthash:8].js"
   },
+  resolve: {
+    // 查找自动添加扩展，默认只查找.js
+    extensions: [".js", ".jsx"]
+  },
   module: {
     rules: [
       {
@@ -35,6 +39,20 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        loader: "babel-loader",
+        include: path.join(__dirname, "src"),
+        options: {
+          // This is a feature of `babel-loader` for webpack (not Babel itself).
+          // It enables caching results in ./node_modules/.cache/babel-loader/
+          // directory for faster rebuilds.
+          cacheDirectory: true,
+          // See #6846 for context on why cacheCompression is disabled
+          cacheCompression: false,
+          compact: true
+        }
       },
       {
         test: /\.css$/,
