@@ -1,6 +1,10 @@
 const path = require("path");
+const resolve = require("resolve");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
+const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 
 const isEnvDevelopment = process.env.NODE_ENV === "development";
 const isEnvProduction = process.env.NODE_ENV === "production";
@@ -17,7 +21,7 @@ module.exports = {
   },
   resolve: {
     // 查找自动添加扩展，默认只查找.js
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
   module: {
     rules: [
@@ -28,6 +32,7 @@ module.exports = {
         use: [
           {
             loader: "eslint-loader",
+
             options: {
               cache: true,
               fix: true, //自动修复
@@ -38,7 +43,8 @@ module.exports = {
               resolvePluginsRelativeTo: __dirname
             }
           }
-        ]
+        ],
+        include: path.join(__dirname, "src")
       },
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
@@ -83,6 +89,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: "./public/index.html",
@@ -107,6 +114,31 @@ module.exports = {
         // both options are optional
         filename: "static/css/[name].[contenthash:8].css",
         chunkFilename: "static/css/[name].[contenthash:8].chunk.css"
-      })
+      }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: resolve.sync("typescript", {
+        basedir: path.join(__dirname, "node_modules")
+      }),
+      async: false,
+      useTypescriptIncrementalApi: true,
+      checkSyntacticErrors: true,
+      resolveModuleNameModule: process.versions.pnp
+        ? `${__dirname}/pnpTs.js`
+        : undefined,
+      resolveTypeReferenceDirectiveModule: process.versions.pnp
+        ? `${__dirname}/pnpTs.js`
+        : undefined,
+      tsconfig: path.join(__dirname, "tsconfig.json"),
+      reportFiles: [
+        "**",
+        "!**/__tests__/**",
+        "!**/?(*.)(spec|test).*",
+        "!**/src/setupProxy.*",
+        "!**/src/setupTests.*"
+      ],
+      silent: true,
+      // The formatter is invoked directly in WebpackDevServerUtils during development
+      formatter: typescriptFormatter
+    })
   ].filter(Boolean)
 };
