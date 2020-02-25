@@ -9,4 +9,5 @@
   * [2.4 配置eslint](2.webpack-basic-usage/2.4-config-eslint.md)
   * [2.5 支持ES6语法](2.webpack-basic-usage/2.5-support-es6.md)
   * [2.6 处理文件](2.webpack-basic-usage/2.6-handle-file.md)
+  * [2.7 支持ts](2.webpack-basic-usage/2.7-support-ts.md)
 
